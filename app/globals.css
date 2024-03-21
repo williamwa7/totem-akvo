@@ -41,14 +41,16 @@
 }
 
 .backgroundAkvo {
-	width: 100vw;
-	height: 100vh;
+	width: auto;
+	height: auto;
 	background-image: url(../public/assets/bg5.jpg);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	z-index: 1 !important;
+	z-index: -1000 !important;
 	position: fixed;
+	min-width: 100vw;
+	min-height: 100vh;
 }
 
 .virtualKeyboardContainer {
@@ -118,4 +120,63 @@
 	align-items: center;
 	margin-bottom: 25px;
 	text-align: center;
+}
+
+.dataTable {
+	border-radius: 10px !important;
+	overflow: hidden !important;
+}
+
+.modal-dialog {
+	min-height: 80vh !important;
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center !important;
+	align-items: center !important;
+}
+
+.modal-content {
+	min-height: 80vh !important;
+}
+
+@keyframes pulsate {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.pulsate {
+	animation: pulsate 2s infinite;
+}
+
+@keyframes shake {
+	0% {
+		transform: translateX(0);
+	}
+	25% {
+		transform: translateX(-5px);
+	}
+	50% {
+		transform: translateX(5px);
+	}
+	75% {
+		transform: translateX(-5px);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+.shake-text {
+	animation: shake 0.5s ease-in-out;
+}
+
+.btn-initial-page {
+	width: 600px;
 }

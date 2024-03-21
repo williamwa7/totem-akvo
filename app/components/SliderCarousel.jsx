@@ -22,6 +22,14 @@ export default function SliderCarousel({ slides, slideNumber }) {
                 {slides[2].content}
             </Carousel.Item>
 
+            <Carousel.Item>
+                {slides[3].content}
+            </Carousel.Item>
+
+            <Carousel.Item>
+                {slides[4].content}
+            </Carousel.Item>
+
         </Carousel>
     )
 }
