@@ -317,7 +317,7 @@ export default function DataCollect() {
         };
 
         try {
-            const response = await fetch(`${baseUrl()}/api/submitForm`, {
+            const response = await fetch(`/api/submitForm`, {
                 method: 'post',
                 body: JSON.stringify(formData)
             });
@@ -337,7 +337,7 @@ export default function DataCollect() {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await fetch(`${baseUrl()}/api/getDataForm`);
+            const response = await fetch(`/api/getDataForm`);
             const jsonData = await response.json();
             setData(jsonData);
         } catch (error) {
