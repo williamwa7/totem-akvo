@@ -74,9 +74,6 @@
 	color: #ffffff !important;
 	opacity: 0.05 !important;
 }
-.hg-button-bksp {
-	transform: scaleX(-1);
-}
 
 .hg-button:active {
 	scale: 1.1;
@@ -88,10 +85,22 @@
 	max-width: 100px;
 }
 
-.hg-button-bksp {
+.hg-button-bksp,
+.hg-button-clear {
+	transform: scaleX(-1);
 	background-color: #f9dfdf !important;
 	color: #600101;
 	font-weight: bold;
+}
+
+.hg-button-clear {
+	max-width: 60px;
+	font-weight: normal !important;
+}
+
+.hg-button-space > span {
+	transform: rotate(270deg);
+	margin-top: 20px;
 }
 
 .hg-button-lock {
@@ -179,4 +188,8 @@
 
 .btn-initial-page {
 	width: 600px;
+}
+
+select {
+	max-height: 100px !important;
 }

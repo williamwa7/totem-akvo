@@ -1,24 +1,16 @@
 'use client'
 import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendar, faFaceFlushed, faFaceGrimace, faFaceLaughBeam, faFaceSadCry, faFaceTired, faGasPump, faHome, faPlaneArrival, faPlaneDeparture, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar, faGasPump, faHome, faPlaneArrival, faPlaneDeparture, faSearch } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link.js";
-
-import Keyboard from "react-simple-keyboard";
-import "react-simple-keyboard/build/css/index.css";
 import SliderCarousel from "../components/SliderCarousel";
 import { useEffect } from "react";
-import baseUrl from "@/utils/baseUrl";
-import ResultPage from "./carouselPages/ResultPage";
 import estados_cidades from "./../../utils/estados_cidades.json";
 import ruas_gramado from "./../../utils/ruas_gramado.json";
 import aeroportos from "./../../utils/aeroportos.json";
 import unidecode from 'unidecode';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { validateEmail } from './../../utils/inputValidations';
 import VirtualKeyboard from "../components/virtualKeyboard";
-import WelcomePage from "./carouselPages/WelcomePage";
 
 
 
@@ -217,7 +209,7 @@ export default function DataCollect() {
 
 
     useEffect(() => {
-        if  (slideNumber === 1) {
+        if (slideNumber === 1) {
             setDisablePrev(false);
             if (!name || !email) {
                 setDisableNext(true);
@@ -441,7 +433,7 @@ export default function DataCollect() {
                                 </label>
                                 <input
                                     type="text"
-                                    className="form-control fs-5 p-3"
+                                    className="form-control fs-4 p-3"
                                     placeholder="Toque aqui para digitar o seu nome completo"
                                     id="name"
                                     value={name}
@@ -473,7 +465,7 @@ export default function DataCollect() {
                                 </label>
                                 <input
                                     type="email"
-                                    className="form-control fs-5 p-3"
+                                    className="form-control fs-4 p-3"
                                     placeholder="Toque aqui para digitar o seu email"
                                     id="email"
                                     value={email}
@@ -502,7 +494,7 @@ export default function DataCollect() {
                             {/* {slideNumber !== 0 && (
                                 <button
                                     type="button"
-                                    className="btn btn-light fs-5 p-3"
+                                    className="btn btn-light fs-4 p-3"
                                     onClick={() => {
                                         handleChangeSlide("-");
                                         resetData();
@@ -513,7 +505,7 @@ export default function DataCollect() {
 
                             <button
                                 type="button"
-                                className="btn btn-light fs-5 p-3"
+                                className="btn btn-light fs-4 p-3"
                                 onClick={() => {
                                     handleEmailVerification();
                                 }}
@@ -532,21 +524,22 @@ export default function DataCollect() {
                         <div className="col-12 d-flex">
                             <div className="col-4 pe-3">
                                 <label htmlFor="estado" className="text-white">Estado:</label>
-                                <select className="form-select fs-5 p-3" id="estado" value={estadoSelecionado} onChange={handleChangeEstado}>
-                                    <option value="" disabled>Selecione</option>
+                                <select className="form-select fs-4 p-3" id="estado" value={estadoSelecionado} onChange={handleChangeEstado}>
+                                    <option value="" disabled className="p-3">Selecione</option>
                                     {estados_cidades.estados.map((estado, index) => (
-                                        <option key={index} value={estado.sigla}>
+                                        <option key={index} value={estado.sigla} style={{ padding: "10px" }}>
                                             {estado.nome}
                                         </option>
                                     ))}
+                                    <hr />
                                 </select>
                             </div>
                             <div className="col-8 ps-3 d-flex justify-content-between align-self-bottom">
                                 <div className="col-11 pe-4">
 
                                     <label className="text-white" htmlFor="cidade">Cidade:</label>
-                                    <select className="form-select fs-5 p-3" id="cidade" value={cidadeSelecionada} onChange={handleChangeCidade}>
-                                        <option value="" disabled>{estadoSelecionado ? "Selecione" : "Selecione um estado para visualizar as cidades"}</option>
+                                    <select className="form-select fs-4 p-3" id="cidade" value={cidadeSelecionada} onChange={handleChangeCidade}>
+                                        <option value="" disabled>{estadoSelecionado ? "Selecione" : "Selecione um estado primeiro"}</option>
                                         {estadoSelecionado &&
                                             estados_cidades.estados.find((estado) => estado.sigla === estadoSelecionado).cidades.map((cidade, index) => (
                                                 <option key={index} value={cidade}>
@@ -560,7 +553,7 @@ export default function DataCollect() {
                                         <label htmlFor=""></label>
                                     </div>
                                     <div className="d-flex justify-content-end">
-                                        <button className={"btn btn-outline-light fs-5 p-3"} onClick={() => { handleShowModalCidade(), setButtonSearchClicked("cidade") }}><FontAwesomeIcon icon={faSearch} /></button>
+                                        <button className={"btn btn-outline-light fs-4 p-3"} onClick={() => { handleShowModalCidade(), setButtonSearchClicked("cidade") }}><FontAwesomeIcon icon={faSearch} /></button>
                                     </div>
                                 </div>
                                 <>
@@ -574,7 +567,7 @@ export default function DataCollect() {
                                                 <div className="row mt-3">
                                                     <div className="col-12">
                                                         <input
-                                                            className="form-control fs-5 p-3 mt-3"
+                                                            className="form-control fs-4 p-3 mt-3"
                                                             type="text" id="cidadeSelecionada"
                                                             placeholder="Toque aqui para pesquisar uma cidade..."
                                                             autoComplete="off"
@@ -593,7 +586,7 @@ export default function DataCollect() {
                                                                             </li>
                                                                         ))}
                                                                     </ul> :
-                                                                    <div className="p-3 text-center d-flex justify-content-center align-items-center h-100 fst" style={{ minHeight: 140 }}>
+                                                                    <div className="p-3 text-center d-flex justify-content-center align-items-center h-100 fst-italic" style={{ minHeight: 140 }}>
                                                                         Digite o nome de uma cidade para exibir as sugestões
                                                                     </div>
                                                                 }
@@ -617,14 +610,14 @@ export default function DataCollect() {
                                             </div>
                                         </Modal.Body>
                                         <Modal.Footer className="align-items-center justify-content-center">
-                                            <button className="btn btn-dark fs-5 px-3" variant="light" onClick={handleCloseModalCidade}>
+                                            <button className="btn btn-dark fs-4 px-3" variant="light" onClick={handleCloseModalCidade}>
                                                 Ok
                                             </button>
                                         </Modal.Footer>
                                     </Modal>
                                 </>
 
-                                {/* <select className="form-select fs-5 p-3" id="cidade" value={cidadeSelecionada} onChange={handleChangeCidade}>
+                                {/* <select className="form-select fs-4 p-3" id="cidade" value={cidadeSelecionada} onChange={handleChangeCidade}>
                                     <option value="">Selecione</option>
                                     {estadoSelecionado &&
                                         estados_cidades.estados.find((estado) => estado.sigla === estadoSelecionado).cidades.map((cidade, index) => (
@@ -649,7 +642,7 @@ export default function DataCollect() {
                                 <div className="col-11">
 
                                     <label className="text-white" htmlFor="cidade">Rua:</label>
-                                    <select className="form-select fs-5 p-3" id="cidade" value={ruaSelecionada} onChange={handleChangeRua}>
+                                    <select className="form-select fs-4 p-3" id="cidade" value={ruaSelecionada} onChange={handleChangeRua}>
                                         <option value="" disabled>Selecione</option>
                                         {ruas_gramado.logradouros.map((rua, index) => (
                                             <option key={index} value={rua}>
@@ -667,7 +660,7 @@ export default function DataCollect() {
                                                     <div className="row mt-3">
                                                         <div className="col-12">
                                                             <input
-                                                                className="form-control fs-5 p-3 mt-3"
+                                                                className="form-control fs-4 p-3 mt-3"
                                                                 type="text"
                                                                 id="ruaSelecionada"
                                                                 autoComplete="off"
@@ -685,7 +678,7 @@ export default function DataCollect() {
                                                                             ))}
                                                                         </ul>
                                                                         :
-                                                                        <div className="p-3 text-center d-flex justify-content-center align-items-center h-100 fst" style={{ minHeight: 140 }}>
+                                                                        <div className="p-3 text-center d-flex justify-content-center align-items-center h-100 fst-italic" style={{ minHeight: 140 }}>
                                                                             Digite o nome de uma rua para exibir as sugestões
                                                                         </div>
                                                                     }
@@ -709,7 +702,7 @@ export default function DataCollect() {
                                                 </div>
                                             </Modal.Body>
                                             <Modal.Footer className="align-items-center justify-content-center">
-                                                <button className="btn btn-dark fs-5 px-3" variant="light" onClick={handleCloseModalRua}>
+                                                <button className="btn btn-dark fs-4 px-3" variant="light" onClick={handleCloseModalRua}>
                                                     Ok
                                                 </button>
                                             </Modal.Footer>
@@ -721,10 +714,10 @@ export default function DataCollect() {
                                         <label htmlFor=""></label>
                                     </div>
                                     <div className="d-flex justify-content-end">
-                                        <button className={"btn btn-outline-light fs-5 p-3"} onClick={() => { handleShowModalRua(), setButtonSearchClicked("rua") }}><FontAwesomeIcon icon={faSearch} /></button>
+                                        <button className={"btn btn-outline-light fs-4 p-3"} onClick={() => { handleShowModalRua(), setButtonSearchClicked("rua") }}><FontAwesomeIcon icon={faSearch} /></button>
                                     </div>
                                 </div>
-                                {/* <select className="form-select fs-5 p-3" id="cidade" value={cidadeSelecionada} onChange={handleChangeCidade}>
+                                {/* <select className="form-select fs-4 p-3" id="cidade" value={cidadeSelecionada} onChange={handleChangeCidade}>
                             <option value="">Selecione</option>
                             {estadoSelecionado &&
                                 estados_cidades.estados.find((estado) => estado.sigla === estadoSelecionado).cidades.map((cidade, index) => (
@@ -740,7 +733,7 @@ export default function DataCollect() {
                     <div className="row mt-4">
                         <div className="col-12">
                             <label htmlFor="email" className="form-label text-white">Qual foi a sua forma de deslocamento para o evento?</label>
-                            <select name="deslocamento" id="deslocamento" className="form-select fs-5 p-3" value={deslocamento} onChange={(e) => handleChangeDeslocamento(e)}>
+                            <select name="deslocamento" id="deslocamento" className="form-select fs-4 p-3" value={deslocamento} onChange={(e) => handleChangeDeslocamento(e)}>
                                 <option value="" disabled>Selecione</option>
                                 <option value="automóvel">Automóvel</option>
                                 <option value="motocicleta">Motocicleta</option>
@@ -759,7 +752,7 @@ export default function DataCollect() {
                                 <div className="col-12 d-flex justify-content-between">
                                     <div className="col-6 pe-3">
                                         <label htmlFor="email" className="form-label text-white fs-3">< FontAwesomeIcon icon={faGasPump} /> Qual o combustível utilizado?</label>
-                                        <select name="combustivel" id="combustivel" className="form-select fs-5 p-3" value={combustivel} onChange={(e) => setCombustivel(e.target.value)}>
+                                        <select name="combustivel" id="combustivel" className="form-select fs-4 p-3" value={combustivel} onChange={(e) => setCombustivel(e.target.value)}>
                                             <option value="" disabled>Selecione</option>
                                             <option value="gasolina">Gasolina</option>
                                             <option value="etanol">Etanol (Álcool)</option>
@@ -770,14 +763,18 @@ export default function DataCollect() {
                                     </div>
 
                                     <div className="col-6 ps-3">
-                                        <label htmlFor="email" className="form-label text-white fs-3"><FontAwesomeIcon icon={faCalendar} /> Qual é o ano do veículo?</label>
-                                        <select name="anoVeiculo" id="anoVeiculo" className="form-select fs-5 p-3" value={anoVeiculo} onChange={(e) => setAnoVeiculo(e.target.value)}>
-                                            <option value="" disabled>Selecione</option>
-                                            <option value="naoInformado">Não sei informar</option>
-                                            {yearsList.map((year, index) => (
-                                                <option key={index} value={year}>{year}</option>
-                                            ))}
-                                        </select>
+                                        {combustivel !== "" &&
+                                            <>
+                                                <label htmlFor="email" className="form-label text-white fs-3"><FontAwesomeIcon icon={faCalendar} /> Qual é o ano do veículo?</label>
+                                                <select name="anoVeiculo" id="anoVeiculo" className="form-select fs-4 p-3" value={anoVeiculo} onChange={(e) => setAnoVeiculo(e.target.value)}>
+                                                    <option value="" disabled>Selecione</option>
+                                                    <option value="naoInformado" className="fst-italic">Não sei informar</option>
+                                                    {yearsList.map((year, index) => (
+                                                        <option key={index} value={year}>{year}</option>
+                                                    ))}
+                                                </select>
+                                            </>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -794,7 +791,7 @@ export default function DataCollect() {
                                             <label htmlFor="aeroportoOrigem" className="form-label text-white"><FontAwesomeIcon icon={faPlaneDeparture} /> Aeroporto de origem:</label>
                                             <div className="col-12 d-flex justify-content-between">
                                                 <div className="col-10">
-                                                    <select className="form-select fs-5 p-3" id="aeroportoOrigem" value={aeroportoOrigem} onFocus={() => handleFocus("aeroportoOrigem")} onChange={handleChangeAeroporto}>
+                                                    <select className="form-select fs-4 p-3" id="aeroportoOrigem" value={aeroportoOrigem} onFocus={() => handleFocus("aeroportoOrigem")} onChange={handleChangeAeroporto}>
                                                         <option value="" disabled>Selecione</option>
                                                         {aeroportos.airports.map((airports, index) => (
                                                             <option key={index} value={airports}>
@@ -804,27 +801,31 @@ export default function DataCollect() {
                                                     </select>
                                                 </div>
                                                 <div className="col-2 d-flex justify-content-end align-items-end">
-                                                    <button className={"btn btn-outline-light fs-5 p-3"} onClick={() => { handleShowModalAeroporto(), setButtonSearchClicked("aeroportoOrigem") }}><FontAwesomeIcon icon={faSearch} /></button>
+                                                    <button className={"btn btn-outline-light fs-4 p-3"} onClick={() => { handleShowModalAeroporto(), setButtonSearchClicked("aeroportoOrigem") }}><FontAwesomeIcon icon={faSearch} /></button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="col-6 d-flex flex-column ps-3">
-                                            <label htmlFor="aeroportoDestino" className="form-label text-white"><FontAwesomeIcon icon={faPlaneArrival} /> Aeroporto de destino:</label>
-                                            <div className="col-12 d-flex justify-content-between">
-                                                <div className="col-10">
-                                                    <select className="form-select fs-5 p-3" id="aeroportoDestino" value={aeroportoDestino} onFocus={() => handleFocus("aeroportoDestino")} onChange={handleChangeAeroporto}>
-                                                        <option value="" disabled>Selecione</option>
-                                                        {aeroportos.airports.map((airports, index) => (
-                                                            <option key={index} value={airports}>
-                                                                {airports}
-                                                            </option>
-                                                        ))}
-                                                    </select>
-                                                </div>
-                                                <div className="col-2 d-flex justify-content-end align-items-end">
-                                                    <button className={"btn btn-outline-light fs-5 p-3"} onClick={() => { handleShowModalAeroporto(), setButtonSearchClicked("aeroportoDestino") }}><FontAwesomeIcon icon={faSearch} /></button>
-                                                </div>
-                                            </div>
+                                            {aeroportoOrigem !== "" &&
+                                                <>
+                                                    <label htmlFor="aeroportoDestino" className="form-label text-white"><FontAwesomeIcon icon={faPlaneArrival} /> Aeroporto de destino:</label>
+                                                    <div className="col-12 d-flex justify-content-between">
+                                                        <div className="col-10">
+                                                            <select className="form-select fs-4 p-3" id="aeroportoDestino" value={aeroportoDestino} onFocus={() => handleFocus("aeroportoDestino")} onChange={handleChangeAeroporto}>
+                                                                <option value="" disabled>Selecione</option>
+                                                                {aeroportos.airports.map((airports, index) => (
+                                                                    <option key={index} value={airports}>
+                                                                        {airports}
+                                                                    </option>
+                                                                ))}
+                                                            </select>
+                                                        </div>
+                                                        <div className="col-2 d-flex justify-content-end align-items-end">
+                                                            <button className={"btn btn-outline-light fs-4 p-3"} onClick={() => { handleShowModalAeroporto(), setButtonSearchClicked("aeroportoDestino") }}><FontAwesomeIcon icon={faSearch} /></button>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            }
                                         </div>
 
                                         <>
@@ -841,7 +842,7 @@ export default function DataCollect() {
                                                         <div className="row mt-3">
                                                             <div className="col-12">
                                                                 <input
-                                                                    className="form-control fs-5 p-3 mt-3"
+                                                                    className="form-control fs-4 p-3 mt-3"
                                                                     type="text"
                                                                     id="aeroportoSelecionado"
                                                                     autoComplete="off"
@@ -888,7 +889,7 @@ export default function DataCollect() {
                                                     </div>
                                                 </Modal.Body>
                                                 <Modal.Footer className="align-items-center justify-content-center">
-                                                    <button className="btn btn-dark fs-5 px-3" variant="light" onClick={handleCloseModalAeroporto}>
+                                                    <button className="btn btn-dark fs-4 px-3" variant="light" onClick={handleCloseModalAeroporto}>
                                                         Ok
                                                     </button>
                                                 </Modal.Footer>
@@ -914,7 +915,7 @@ export default function DataCollect() {
                             {slideNumber !== 0 && (
                                 <button
                                     type="button"
-                                    className="btn btn-light fs-5 p-3"
+                                    className="btn btn-light fs-4 p-3"
                                     onClick={() => {
                                         handleChangeSlide("-");
                                     }}
@@ -924,7 +925,7 @@ export default function DataCollect() {
 
                             <button
                                 type="button"
-                                className="btn btn-light fs-5 p-3"
+                                className="btn btn-light fs-4 p-3"
                                 onClick={() => {
                                     handleChangeSlide("+");
                                 }}
@@ -943,17 +944,7 @@ export default function DataCollect() {
                         <div className="col-12 d-flex justify-content-center">
                             <img src="/assets/AKVO.png" alt="" width={500} />
                         </div>
-                        {loading ?
-                            <div className="row" style={{ height: "40vh" }}>
-                                <div className="col-12 d-flex flex-column gap-4 justify-content-center align-items-center">
-
-                                    <h1 className="fs-1 text-center text-light">Aguarde,<br />estamos calculando as emissões</h1>
-                                    <div className="spinner-border text-light" role="status">
-                                        <span className="visually-hidden">Loading...</span>
-                                    </div>
-                                </div>
-                            </div>
-                            :
+                        {!loading ?
                             <>
                                 <div className="col-12 d-flex flex-column gap-4 justify-content-center align-items-center" style={{ height: "40vh" }}>
                                     <div className="col-12" >
@@ -977,6 +968,16 @@ export default function DataCollect() {
                                     </div>
                                 </div>
                             </>
+                            :
+                            <div className="row" style={{ height: "40vh" }}>
+                                <div className="col-12 d-flex flex-column gap-4 justify-content-center align-items-center">
+
+                                    <h1 className="fs-1 text-center text-light">Aguarde,<br />estamos calculando as emissões</h1>
+                                    <div className="spinner-border text-light" role="status">
+                                        <span className="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
 
                         }
                     </div>
@@ -991,7 +992,7 @@ export default function DataCollect() {
                             <img src="/assets/AKVO.png" alt="" width={500} />
                         </div>
                         {loading ? (
-                            <div className="col-12 d-flex justify-content-center align-items-center">
+                            <div className="col-12 d-flex justify-content-center align-items-center" style={{ height: "550px" }}>
                                 <div className="spinner-border text-light" role="status">
                                     <span className="visually-hidden">Loading...</span>
                                 </div>
@@ -1016,7 +1017,7 @@ export default function DataCollect() {
                                     <div className="col-12 d-flex justify-content-center align-items-end my-3">
                                         <div className="col-10">
 
-                                            <p className="text-light fs-5 text-center">As emissoes referentes ao seu deslocamento  foram contabilizadas e serão compensadas pela organização do evento por meio da compra de créditos de carbono!</p>
+                                            <p className="text-light fs-4 text-center">As emissoes referentes ao seu deslocamento  foram contabilizadas e serão compensadas pela organização do evento por meio da compra de créditos de carbono!</p>
                                         </div>
                                         <div className="col-2 d-flex justify-content-center align-self-center">
 
@@ -1026,7 +1027,7 @@ export default function DataCollect() {
                                     <button type="button" className="btn btn-light fs-2 p-3 col-6" onClick={() => { resetData() }}>Finalizar</button>
                                 </div>
                             ) : (
-                                <div className="col-12 d-flex flex-column justify-content-center align-items-center">
+                                <div className="col-12 d-flex flex-column justify-content-center align-items-center" style={{ height: "550px" }}>
                                     <h1 className="text-light text-center fs-1">Infelizmente não foi possível<br />realizar o cálculo de emissões.</h1>
                                     <p className="text-light text-center mt-5">Não foram encontrados dados de <br /> distância para este trajeto.</p>
                                     <button type="button" className="btn btn-light fs-2 p-3 col-6 mt-5" onClick={() => { resetData() }}>Finalizar</button>

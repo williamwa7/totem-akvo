@@ -1,3 +1,4 @@
+import FullScreenButton from "@/utils/FullScreenButton";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,6 +12,7 @@ export default function Index() {
                 <Link href="/collectedData" className="btn-initial-page btn btn-light fs-1 p-3">Ver dados coletados</Link>
                 <Link href="/presentation" className="btn-initial-page btn btn-light fs-1 p-3">Apresentação AKVO</Link>
                 {/* <video src="/assets/video.mp4" autoPlay loop muted className="backgroundAkvo"></video> */}
+                <FullScreenButton/>
             </div>
         </>
     );

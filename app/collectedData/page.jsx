@@ -152,7 +152,11 @@ export default function Presentation() {
                                                             <td>{item.combustivel}</td>
                                                             <td>{item.anoVeiculo}</td>
                                                             <td>{item.origem}</td>
-                                                            <td>{`${item.distancia.replace('.', ',')} Km`}</td>
+                                                            <td>{item.distancia !== 'NaN' ?
+                                                                `${item.distancia.replace('.', ',')} Km`
+                                                                :
+                                                                "- - - -"}
+                                                            </td>
                                                         </tr>
                                                     )) :
                                                         <tr className="text-light fs-5">
