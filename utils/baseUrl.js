@@ -1,7 +1,9 @@
 export default function baseUrl() {
-    const inDevelopment = window.location.hostname === "localhost";
-    console.log("inDevelopment", inDevelopment);
-    return inDevelopment
-        ? "http://localhost:3000"
-        : "https://totem-akvo.vercel.app";
+	// Desenvolvimento
+	// const baseUrl = "http://localhost:3000";
+
+	//Produção
+	const baseUrl = "https://totem-akvo.vercel.app";
+
+	return baseUrl;
 }
