@@ -3,9 +3,9 @@ import { GoogleSpreadsheet } from "google-spreadsheet";
 const doc = new GoogleSpreadsheet(process.env.SHEET_ID);
 
 export default async (req, res) => {
-	if (req.method !== "POST") {
-		return res.status(405).json({ error: "Método não permitido" });
-	}
+	// if (req.method !== "POST") {
+	// 	return res.status(405).json({ error: "Método não permitido" });
+	// }
 	try {
 		await doc.useServiceAccountAuth({
 			client_email: process.env.CLIENT_EMAIL,
