@@ -1,3 +1,4 @@
+'use strict';
 import { GoogleSpreadsheet } from "google-spreadsheet";
 
 const doc = new GoogleSpreadsheet(process.env.SHEET_ID);
