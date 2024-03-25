@@ -51,10 +51,6 @@ export default function DataCollect() {
     const [showModalAeroporto, setShowModalAeroporto] = useState(false);
     const yearsList = Array.from({ length: 75 }, (_, i) => 2024 - i);
 
-    console.log("baseUrl", baseUrl());
-
-
-
     const handleCloseModalCidade = () => {
         setShowModalCidade(false);
     }
