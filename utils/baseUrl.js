@@ -3,5 +3,5 @@ export default function baseUrl() {
     console.log("inDevelopment", inDevelopment);
     return inDevelopment
         ? "http://localhost:3000"
-        : "https://akvo-digital-totem.vercel.app";
+        : "https://totem-akvo.vercel.app/";
 }

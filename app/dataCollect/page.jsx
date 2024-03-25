@@ -11,6 +11,7 @@ import aeroportos from "./../../utils/aeroportos.json";
 import unidecode from 'unidecode';
 import Modal from 'react-bootstrap/Modal';
 import VirtualKeyboard from "../components/virtualKeyboard";
+import baseUrl from "@/utils/baseUrl";
 
 
 
@@ -49,6 +50,8 @@ export default function DataCollect() {
     const [showModalRua, setShowModalRua] = useState(false);
     const [showModalAeroporto, setShowModalAeroporto] = useState(false);
     const yearsList = Array.from({ length: 75 }, (_, i) => 2024 - i);
+
+    console.log("baseUrl", baseUrl());
 
 
 
@@ -314,7 +317,7 @@ export default function DataCollect() {
         };
 
         try {
-            const response = await fetch(`/api/submitForm`, {
+            const response = await fetch(`${baseUrl()}/api/submitForm`, {
                 method: 'POST',
                 body: JSON.stringify(formData)
             });
