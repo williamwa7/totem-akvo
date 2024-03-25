@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFaceFlushed, faFaceGrimace, faFaceLaughBeam, faFaceSadCry, faFaceTired, faHome, faSearch } from "@fortawesome/free-solid-svg-icons";
