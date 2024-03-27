@@ -30,7 +30,7 @@ export default function VirtualKeyboard(props) {
             setLayout("default");
         }
 
-    }, [focusedInput]);
+    }, [focusedInput, inputText]);
 
     const handleShift = (button) => {
         if (button === "shift") {

@@ -1,10 +1,9 @@
 'use client'
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faGasPump, faHome, faPlaneArrival, faPlaneDeparture, faSearch, faInstagram, faWhatsapp, faFacebook, faLinkedin } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link.js";
 import SliderCarousel from "../components/SliderCarousel";
-import { useEffect } from "react";
 import estados_cidades from "./../../utils/estados_cidades.json";
 import ruas_gramado from "./../../utils/ruas_gramado.json";
 import aeroportos from "./../../utils/aeroportos.json";
@@ -259,13 +258,14 @@ export default function DataCollect() {
         telefone
     ]);
 
-    const handleChangeSlide = (action) => {
+    const handleChangeSlide = useCallback((action) => {
         if (action === "+") {
             setSlideNumber(slideNumber + 1);
         } else {
             setSlideNumber(slideNumber - 1);
         }
-    }
+    }, [slideNumber]);
+
 
     // Função para atualizar o valor do input focado
     const handleInputChange = (value) => {
@@ -379,7 +379,7 @@ export default function DataCollect() {
                 }, 3000);
             }
         }
-    }, [data, id, handleChangeSlide]);
+    }, [data, id]);
 
 
 
