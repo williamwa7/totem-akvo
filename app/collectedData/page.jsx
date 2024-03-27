@@ -16,6 +16,7 @@ export default function Presentation() {
     const [errorMessage, setErrorMessage] = useState(null);
     const [focusedInput, setFocusedInput] = useState("");
     const [dataReceived, setDataReceived] = useState(false);
+    const [showConsultorsOnly, setShowConsultorsOnly] = useState(false);
     const ultimoDado = data[data.length - 1]?.id;
 
     useEffect(() => {
@@ -36,6 +37,11 @@ export default function Presentation() {
         // Chama a função para buscar os dados quando o componente é montado
         fetchData();
     }, []);
+
+    const handleShowConsultorsOnlyChange = () => {
+        setShowConsultorsOnly(!showConsultorsOnly);
+    };
+
 
     const handleInputChange = (value) => {
         setPasswordInput(value);
@@ -86,13 +92,15 @@ export default function Presentation() {
             </div>
 
             <div className="row justify-content-center">
-                <div className="row justify-content-center pages align-items-center">
+                <div className="row justify-content-center pages align-items-center" style={{ height: '90vh', width: '100vw' }}>
                     {loading ?
-                        <div className="col-12 fs-6 text-light text-center">
+                        <div className="col-12 fs-6 text-light text-center d-flex flex-column justify-content-center align-items-center">
                             <h1>Aguarde, <br />carregando os dados!</h1>
-                            <div className="mt-4 spinner-border text-light" role="status">
+                            {/* <div className="mt-4 spinner-border text-light" role="status">
                                 <span className="visually-hidden fs-1">Loading...</span>
-                            </div>
+                            </div> */}
+                            <div className="custom-loader"></div>
+
 
                         </div>
                         :
@@ -127,46 +135,75 @@ export default function Presentation() {
                                     <button className="btn btn-light mt-3 p-3 fs-5 fw-bold" onClick={handleVerifyPassword}>Acessar</button>
                                 </div>
                                 :
-                                <div div className="col-12 fs-5 text-light">
+                                <div div className="col-12 fs-6 text-light">
                                     <h1 className="text-center">Dados Coletados</h1>
+                                    <div className="col-12 d-flex justify-content-end">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            id="showConsultorsOnly"
+                                            checked={showConsultorsOnly}
+                                            onChange={handleShowConsultorsOnlyChange}
+                                        />
+                                        <label htmlFor="showConsultorsOnly" className="mx-2">Exibir somente Consultores</label>
+                                    </div>
+
                                     <div className="col-12" style={{ maxHeight: '500px', overflow: 'auto' }}>
                                         <div style={{ overflowY: 'auto', maxHeight: '100%' }}>
-                                            <table className="text-center table table-hover table-striped dataTable mt-3">
-                                                <thead className="table-dark">
-                                                    <tr>
-                                                        <th>Nome</th>
-                                                        <th>E-mail</th>
-                                                        <th>Deslocamento</th>
-                                                        <th>Combustível</th>
-                                                        <th>Ano do Veículo</th>
-                                                        <th>Origem</th>
-                                                        <th>Distância</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody >
-                                                    {dataReceived ? data.map(item => (
-                                                        <tr key={item.id} >
-                                                            <td>{item.name}</td>
-                                                            <td>{item.email}</td>
-                                                            <td>{item.deslocamento}</td>
-                                                            <td>{item.combustivel}</td>
-                                                            <td>{item.anoVeiculo}</td>
-                                                            <td>{item.origem}</td>
-                                                            <td>{
-                                                                item.distancia !== 'NaN' ?
-                                                                    `${item.distancia.replace('.', ',')} Km`
-                                                                    :
-                                                                    "- - - -"
+                                            {dataReceived ? (
+                                                <table className="text-center table table-hover table-striped dataTable mt-3">
+                                                    {/* Cabeçalho da tabela */}
+                                                    <thead className="table-dark">
+                                                        <tr>
+                                                            <th>Nome</th>
+                                                            <th>E-mail</th>
+                                                            <th>Empresa</th>
+                                                            <th>Consultor</th>
+                                                            <th>Telefone</th>
+                                                            <th>Deslocamento</th>
+                                                            <th>Aeroporto Origem</th>
+                                                            <th>Aeroporto Destino</th>
+                                                            <th>Combustível</th>
+                                                            <th>Ano do Veículo</th>
+                                                            <th>Origem</th>
+                                                            <th>Distância</th>
+                                                        </tr>
+                                                    </thead>                                                    
+                                                    <tbody>
+                                                        {data.map((item) => {
+                                                            // Verifica se o filtro de consultores está ativado e se o item é um consultor
+                                                            if (showConsultorsOnly && item.consultor !== 'sim') {
+                                                                return null; // Ignora o item se o filtro estiver ativado e ele não for um consultor
                                                             }
-                                                            </td>
-                                                        </tr>
-                                                    )) :
-                                                        <tr className="text-light fs-5">
-                                                            <td colSpan="4" className="py-4 text-danger fw-bold">Ocorreu um problema ao carregar os dados,<br /> recarregue a página e tente novamente.</td>
-                                                        </tr>
-                                                    }
-                                                </tbody>
-                                            </table>
+                                                            return (
+                                                                <tr key={item.id}>
+                                                                    <td>{item.name}</td>
+                                                                    <td>{item.email}</td>
+                                                                    <td>{item.empresa}</td>
+                                                                    <td>{item.consultor}</td>
+                                                                    <td>{item.telefone}</td>
+                                                                    <td>{item.deslocamento}</td>
+                                                                    <td>{item.aeroportoOrigem}</td>
+                                                                    <td>{item.aeroportoDestino}</td>
+                                                                    <td>{item.combustivel}</td>
+                                                                    <td>{item.anoVeiculo}</td>
+                                                                    <td>{item.origem}</td>
+                                                                    <td>
+                                                                        {item.distancia && item.distancia !== 'NaN' ? `${item.distancia.replace('.', ',')} Km` : "- - - -"}
+                                                                    </td>
+                                                                </tr>
+                                                            );
+                                                        })}
+                                                    </tbody>
+                                                </table>
+                                            ) : (
+                                                <tr className="text-light fs-5">
+                                                    <td colSpan="12" className="py-4 text-danger fw-bold">
+                                                        Ocorreu um problema ao carregar os dados, recarregue a página e tente novamente.
+                                                    </td>
+                                                </tr>
+                                            )}
+
                                         </div>
                                     </div>
                                     <div className="row mt-2">

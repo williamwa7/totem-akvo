@@ -40,10 +40,26 @@
 	overflow-y: auto !important;
 }
 
+.akvo-logo-carousel {
+	width: 500px !important;
+}
+
 .backgroundAkvo {
 	width: auto;
 	height: auto;
 	background-image: url(../public/assets/bg5.jpg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	z-index: -1000 !important;
+	position: fixed;
+	min-width: 100vw;
+	min-height: 100vh;
+}
+.backgroundAkvo2 {
+	width: auto;
+	height: auto;
+	background-image: url(../public/assets/bg6.jpg);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -93,6 +109,18 @@
 	font-weight: bold;
 }
 
+.hg-row {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.hg-standardBtn,
+.hg-button-bksp {
+	max-width: 100px;
+}
+
 .hg-button-clear {
 	max-width: 60px;
 	font-weight: normal !important;
@@ -120,6 +148,25 @@
 	align-items: center;
 	margin-bottom: 25px;
 }
+.homeDataCollectConsultTitle1 {
+	font-size: 50px;
+	color: #ffffff;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	margin-bottom: 25px;
+}
+.homeDataCollectConsultTitle2 {
+	font-size: 50px;
+	color: #ffffff;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	margin-bottom: 25px;
+}
 
 .homeDataCollectSubtitle {
 	font-size: 28px;
@@ -127,7 +174,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-bottom: 25px;
+	margin-bottom: 0px;
 	text-align: center;
 }
 
@@ -192,4 +239,152 @@
 
 select {
 	max-height: 100px !important;
+}
+
+/* HTML: <div class="loader"></div> */
+.custom-loader {
+	width: 100px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: radial-gradient(farthest-side, #ffffff 94%, #0000) top/8px 8px
+			no-repeat,
+		conic-gradient(#0000 30%, #ffffff);
+	-webkit-mask: radial-gradient(
+		farthest-side,
+		#0000 calc(100% - 8px),
+		#000 0
+	);
+	animation: l13 1.5s infinite linear;
+}
+@keyframes l13 {
+	100% {
+		transform: rotate(1turn);
+	}
+}
+
+.glow-button {
+	position: relative;
+	overflow: hidden; /* Para garantir que o brilho não saia do botão */
+}
+
+.glow-button::before {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: -100%; /* Comece fora da área visível */
+	width: 200%; /* Cobrirá toda a largura do botão */
+	height: 100%;
+	color: #000;
+	background: linear-gradient(
+		to right,
+		transparent 0%,
+		rgba(255, 255, 255, 0.25) 50%,
+		transparent 100%
+	);
+	animation: glow 4s infinite linear;
+}
+
+@keyframes glow {
+	0% {
+		transform: translateX(-100%); /* Movendo-se para a esquerda */
+	}
+	100% {
+		transform: translateX(100%); /* Movendo-se para a direita */
+	}
+}
+
+@media screen and (max-width: 820px) {
+	.hide-on-mobile {
+		display: none !important;
+	}
+
+	.pages {
+		width: 100vw;
+		height: 100vh;
+		padding: 0px;
+		border-radius: 0px;
+	}
+
+	.pageContent {
+		height: 100vh !important;
+	}
+
+	.carousel-container{
+		height: 100vh !important;
+	}
+
+	.akvo-logo-carousel {
+		max-width: 300px !important;
+	}
+
+	.homeDataCollectConsultTitle1 {
+		font-size: 30px;
+	}
+
+	.homeDataCollectConsultTitle2 {
+		font-size: 30px;
+	}
+
+	.homeDataCollectSubtitle {
+		font-size: 18px;
+	}
+
+	.start-btn {
+		font-size: 18px !important;
+		margin: 30px 0 30px 0 !important;
+	}
+
+	.saiba-mais-btn {
+		font-size: 16px !important;
+	}
+
+	.form-label,
+	.form-label-select,
+	.form-check-label,
+	.form-check-input {
+		font-size: 18px !important;
+	}
+
+	.form-control,
+	.form-select,
+	.btn-search {
+		font-size: 18px !important;
+		padding: 10px !important;
+	}
+
+	.carousel-inner {
+		padding: 20px !important;
+	}
+
+	.aviso-input {
+		font-size: 14px !important;
+	}
+
+	.errorMsgEmail,
+	.errorMsgPhone,
+	.aviso-estado {
+		font-size: 14px !important;
+	}
+
+	.btn-light,
+	.btn-dark {
+		font-size: 18px !important;
+		padding: 8px 8px !important;
+	}
+
+	.aviso-privacidade {
+		font-size: 12px !important;
+		color: #a7a7a7 !important;
+		margin-top: 50px;
+	}
+
+	.aviso-privacidade-title {
+		font-size: 14px !important;
+	}
+
+	.enviar-btn {
+		font-size: 18px !important;
+		padding: 10px !important;
+		width: 200px;
+	}
 }
