@@ -379,7 +379,7 @@ export default function DataCollect() {
                 }, 3000);
             }
         }
-    }, [data, id]);
+    }, [data, id, handleChangeSlide]);
 
 
 

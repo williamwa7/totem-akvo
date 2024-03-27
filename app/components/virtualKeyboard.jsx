@@ -17,7 +17,7 @@ export default function VirtualKeyboard(props) {
     // console.log('btnShiftPressed', btnShiftPressed);
 
     useEffect(() => {
-        setInputValue(inputText);
+        // setInputValue(inputText);
 
 
         if (focusedInput === "telefone") {
