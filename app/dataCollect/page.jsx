@@ -125,14 +125,15 @@ export default function DataCollect() {
         }
     };
 
-
     const handlePesquisarCidade = (event) => {
+        setCidadeSelecionada(event)
         const pesquisa = unidecode(event.toLowerCase());
         const cidadesEstadoSelecionado = estados_cidades.estados.find((estado) => estado.sigla === estadoSelecionado)?.cidades || [];
         const cidadesFiltradas = cidadesEstadoSelecionado.filter((cidade) => unidecode(cidade.toLowerCase()).includes(pesquisa));
         setFiltroCidades(cidadesFiltradas.length > 0 ? cidadesFiltradas : ["Não encontramos nenhuma cidade para esta busca"]);
         // setMostrarSugestoes(true);
     };
+
 
     const selecionarCidade = (cidade) => {
         setCidadeSelecionada(cidade);
@@ -142,6 +143,7 @@ export default function DataCollect() {
     };
 
     const handlePesquisarRua = (event) => {
+        setRuaSelecionada(event)
         const pesquisa = unidecode(event.toLowerCase());
         const ruasFiltradas = ruas_gramado.logradouros.filter(rua => unidecode(rua.toLowerCase()).includes(pesquisa));
         setFiltroRuas(ruasFiltradas.length > 0 ? ruasFiltradas : ["Não encontramos nenhuma rua para esta busca"]);
@@ -156,6 +158,11 @@ export default function DataCollect() {
     };
 
     const handlePesquisarAeroporto = (event) => {
+        if (focusedInput === 'aeroportoOrigem') {
+            setAeroportoOrigem(event);
+        } else {
+            setAeroportoDestino(event);
+        }
         const pesquisa = unidecode(event.toLowerCase());
         const aeroportosMapeados = aeroportos.airports.map(aeroporto => (aeroporto));
 
@@ -283,19 +290,19 @@ export default function DataCollect() {
                 setTelefone(value);
                 break;
             case "cidadeSelecionada":
-                setCidadeSelecionada(value);
+                // setCidadeSelecionada(value);
                 handlePesquisarCidade(value);
                 break;
             case 'ruaSelecionada':
-                setRuaSelecionada(value);
+                // setRuaSelecionada(value);
                 handlePesquisarRua(value);
                 break;
             case 'aeroportoOrigem':
-                setAeroportoOrigem(value);
+                // setAeroportoOrigem(value);
                 handlePesquisarAeroporto(value);
                 break;
             case 'aeroportoDestino':
-                setAeroportoDestino(value);
+                // setAeroportoDestino(value);
                 handlePesquisarAeroporto(value);
             default:
                 break;
@@ -428,7 +435,7 @@ export default function DataCollect() {
                             <div className="col-12 d-flex justify-content-center">
                                 <button
                                     type="button"
-                                    className="btn btn-light fs-2 p-3 col-6 pulsate"
+                                    className="btn btn-light fs-2 p-3 col-4 pulsate"
                                     onClick={() => {
                                         handleChangeSlide("+");
                                     }}
@@ -667,7 +674,8 @@ export default function DataCollect() {
                                                             type="text" id="cidadeSelecionada"
                                                             placeholder="Toque aqui para pesquisar uma cidade..."
                                                             autoComplete="off"
-                                                            onChange={handlePesquisarCidade}
+                                                            // onChange={handlePesquisarCidade}
+                                                            onChange={(e) => handlePesquisarCidade(e.target.value)}
                                                             value={cidadeSelecionada}
                                                             onFocus={() => handleFocus("cidadeSelecionada")}
                                                         />
@@ -761,7 +769,9 @@ export default function DataCollect() {
                                                                 id="ruaSelecionada"
                                                                 autoComplete="off"
                                                                 placeholder="Toque aqui para pesquisar um endereço..."
-                                                                onChange={handlePesquisarRua} value={ruaSelecionada}
+                                                                value={ruaSelecionada}
+                                                                // onChange={handlePesquisarRua} 
+                                                                onChange={(e) => handlePesquisarRua(e.target.value)}
                                                                 onFocus={() => handleFocus("ruaSelecionada")} />
                                                             {focusedInput === "ruaSelecionada" && (
                                                                 <div className=" mt-1 col-12 bg-white rounded shadow border border-1" style={{ zIndex: 999, minHeight: 150, maxHeight: 150, overflow: "auto" }}>
@@ -943,7 +953,8 @@ export default function DataCollect() {
                                                                     id="aeroportoSelecionado"
                                                                     autoComplete="off"
                                                                     placeholder="Toque aqui para pesquisar um aeroporto..."
-                                                                    onChange={handlePesquisarAeroporto}
+                                                                    // onChange={handlePesquisarAeroporto}
+                                                                    onChange={(e) => handlePesquisarAeroporto(e.target.value)}
                                                                     value={buttonSearchClicked === "aeroportoOrigem" ? aeroportoOrigem : aeroportoDestino}
                                                                     onFocus={() => handleFocus(buttonSearchClicked === "aeroportoOrigem" ? "aeroportoOrigem" : "aeroportoDestino")}
                                                                 />
