@@ -813,7 +813,7 @@ export default function DataCollect() {
                     wind={0.01} // Ajuste o vento para controlar a direção do confete
                 />}
                 <div className="row justify-content-center pages align-items-center">
-                    <div className="pageContent d-flex flex-column justify-content-center">
+                    <div className={`pageContent ${slideNumber !== 0 ? "page-limit" : ""} d-flex flex-column justify-content-center`}>
                         <SliderCarousel slides={slides} slideNumber={slideNumber} />
                     </div>
                 </div>

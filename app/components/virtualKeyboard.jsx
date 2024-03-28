@@ -10,6 +10,7 @@ export default function VirtualKeyboard(props) {
     // const [layout, setLayout] = useState(focusedInput !== "email" && focusedInput !== "passwordInput" ? "shift" : "default");
     const [inputValue, setInputValue] = useState('');
     const [btnShiftPressed, setBtnShiftPressed] = useState(false);
+    const [btnSpacePressed, setBtnSpacePressed] = useState(false);
     // console.log('inputValue', inputValue);
     // console.log('focusedInput', focusedInput);
     // console.log('inputText', inputText);
@@ -18,17 +19,21 @@ export default function VirtualKeyboard(props) {
 
     useEffect(() => {
         setInputValue(inputText);
+
         if (focusedInput === "telefone") {
             setLayout("number");
 
-        } else if ((focusedInput !== "email" && focusedInput !== "passwordInput") && inputText.length < 1) {
+        } else if ((focusedInput !== "email" && focusedInput !== "passwordInput") && inputText.length < 1 || btnSpacePressed) {
             setLayout("shift");
+            setBtnSpacePressed(false);
         }
-        else {
+        else if (btnShiftPressed) {
+            setLayout("shift");
+        } else {
             setLayout("default");
         }
 
-    }, [focusedInput, inputText]);
+    }, [focusedInput, inputText, btnShiftPressed]);
 
     const handleShift = (button) => {
         if (button === "shift") {
@@ -68,7 +73,7 @@ export default function VirtualKeyboard(props) {
                 break;
             case "{space}":
                 handleSpace();
-                setLayout("shift");
+                setBtnSpacePressed(true);
                 break;
             case "{clear}":
                 handleClearText();

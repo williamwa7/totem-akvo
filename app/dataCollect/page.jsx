@@ -436,18 +436,20 @@ export default function DataCollect() {
                                     Iniciar
                                 </button>
                             </div>
-                            <div className="col-12 d-flex justify-content-center mt-5">
-                                <Link
-                                    href="/dataCollectConsultant"
-                                    className="btn btn-outline-light fs-5 my-4 glow-button p-3"
-                                    onClick={() => {
-                                        {
-                                            setConsultor(true);
-                                            // handleChangeSlide("+");
-                                        }
-                                    }}>
-                                    Quero ser um Consultor AKVO!
-                                </Link>
+                            <div className="col-12 d-flex  justify-content-evenly mt-5">
+                                <div className="d-flex justify-content-center align-items-center">
+                                    <Link
+                                        href="/dataCollectConsultant"
+                                        className="btn btn-outline-light fs-5 my-4 glow-button p-3"
+                                        onClick={() => {
+                                            {
+                                                setConsultor(true);
+                                                // handleChangeSlide("+");
+                                            }
+                                        }}>
+                                        Quero ser um Consultor AKVO!
+                                    </Link>
+                                </div>
 
                                 {/* <button
                                     type="button"
@@ -461,8 +463,16 @@ export default function DataCollect() {
                                 >
                                     Quero ser um Consultor AKVO!
                                 </button> */}
+
+
                             </div>
+
                         </div>
+
+                    </div>
+                    <div className="qrcode-container">
+                        <p className="text-white text-center fs-5">Seja um consultor!</p>
+                        <img src="/assets/qrcode_white.png" alt="" className="qrcode" />
                     </div>
                 </section>
 
@@ -1160,7 +1170,7 @@ export default function DataCollect() {
                     </div>
                     <div className="row justify-content-center">
                         <div className="row justify-content-center pages align-items-center">
-                            <div className="pageContent d-flex flex-column justify-content-center">
+                            <div className={`pageContent ${slideNumber !== 0 ? "page-limit" : ""} d-flex flex-column justify-content-center`}>
                                 <SliderCarousel slides={slides} slideNumber={slideNumber} />
                             </div>
                         </div>
