@@ -714,7 +714,7 @@ export default function DataCollect() {
                                 <div className="col-12 text-secondary text-center fs-6 aviso-privacidade">
                                     <div><b className="aviso-privacidade-title">Aviso de Privacidade:</b></div>
                                     <div>Os dados fornecidos neste formulário, incluindo nome, e-mail, empresa, telefone, endereço, são coletados para futuros contatos comerciais relacionados aos nossos produtos e serviços. Garantimos que seus dados serão tratados com sigilo e segurança, de acordo com a Lei Geral de Proteção de Dados (LGPD) do Brasil.</div>
-                                    <div className="mt-2">Ao tocar no botão <i><b>"Enviar"</b></i>, você concorda com a coleta e o processamento dos seus dados conforme descrito acima.</div>
+                                    <div className="mt-2">Ao tocar no botão <i><b>Enviar</b></i>, você concorda com a coleta e o processamento dos seus dados conforme descrito acima.</div>
                                 </div>
                             </>
                             :

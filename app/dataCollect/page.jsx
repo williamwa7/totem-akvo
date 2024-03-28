@@ -1056,7 +1056,7 @@ export default function DataCollect() {
                                 <div className="col-12 text-secondary text-center fs-6">
 
                                     <div><strong className="fs-5">Aviso de Privacidade:</strong><br /> Os dados fornecidos neste formulário, incluindo nome, e-mail, empresa, telefone, cidade, estado, forma de deslocamento, combustível utilizado e ano do veículo, são coletados para fins de cálculo de emissão de gases de efeito estufa e para futuros contatos comerciais relacionados aos nossos produtos e serviços. Garantimos que seus dados serão tratados com sigilo e segurança, de acordo com a Lei Geral de Proteção de Dados (LGPD) do Brasil.</div>
-                                    <div>Ao tocar no botão <i><b>"Calcular"</b></i>, você concorda com a coleta e o processamento dos seus dados conforme descrito acima.</div>
+                                    <div>Ao tocar no botão <i><b>Calcular</b></i>, você concorda com a coleta e o processamento dos seus dados conforme descrito acima.</div>
                                 </div>
                             </>
                             :
