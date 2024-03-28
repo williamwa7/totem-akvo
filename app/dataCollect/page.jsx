@@ -365,7 +365,7 @@ export default function DataCollect() {
             const distanciaEncontrada = filteredData.distancia;
             if (distanciaEncontrada) {
                 setDistancia(parseFloat(distanciaEncontrada).toLocaleString('pt-BR', { maximumFractionDigits: 2 }));
-                handleChangeSlide("+");
+                setSlideNumber(slideNumber + 1);
                 // parseFloat(distanciaEncontrada)
 
                 setEmissoes(parseFloat(distanciaEncontrada) * 0.0165); //calculo hipotético para exemplo
@@ -379,7 +379,7 @@ export default function DataCollect() {
                 }, 3000);
             }
         }
-    }, [data, id, handleChangeSlide]);
+    }, [data, id]);
 
 
 
