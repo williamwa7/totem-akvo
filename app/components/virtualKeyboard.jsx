@@ -17,9 +17,7 @@ export default function VirtualKeyboard(props) {
     // console.log('btnShiftPressed', btnShiftPressed);
 
     useEffect(() => {
-        // setInputValue(inputText);
-
-
+        setInputValue(inputText);
         if (focusedInput === "telefone") {
             setLayout("number");
 
@@ -41,7 +39,7 @@ export default function VirtualKeyboard(props) {
     };
 
     const handleKeyPress = (button) => {
-        if (!focusedInput) return;        
+        if (!focusedInput) return;
 
         switch (button) {
             case "{bksp}":

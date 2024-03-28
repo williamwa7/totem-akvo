@@ -258,13 +258,13 @@ export default function DataCollect() {
         telefone
     ]);
 
-    const handleChangeSlide = useCallback((action) => {
+    const handleChangeSlide = (action) => {
         if (action === "+") {
             setSlideNumber(slideNumber + 1);
         } else {
             setSlideNumber(slideNumber - 1);
         }
-    }, [slideNumber]);
+    }
 
 
     // Função para atualizar o valor do input focado
@@ -379,7 +379,7 @@ export default function DataCollect() {
                 }, 3000);
             }
         }
-    }, [data, id, slideNumber]);
+    }, [data, id]);
 
 
 
